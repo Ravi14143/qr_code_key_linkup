@@ -1,5 +1,4 @@
 import streamlit as st
-import mysql.connector
 import hashlib
 import os
 import cv2
