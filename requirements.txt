@@ -7,3 +7,5 @@ Pillow==10.2.0
 PyMySQL==1.1.0
 pyzbar==0.1.9
 streamlit==1.22.0
+opencv-contrib-python-headless
+streamlit_webrtc==0.20.0
