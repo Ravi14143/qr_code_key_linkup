@@ -1,1 +1,1 @@
-pyzbar
+libzbar0
