@@ -1,12 +1,24 @@
 import mysql.connector
+import pymysql
 
 def create_database_and_tables():
     # Connect to MySQL server
-    connection = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="mrk*14143"
+
+    timeout = 10
+    connection = pymysql.connect(
+    charset="utf8mb4",
+    connect_timeout=timeout,
+    cursorclass=pymysql.cursors.DictCursor,
+    db="defaultdb",
+    host="mysql-3fe1618-ravi.a.aivencloud.com",
+    password="AVNS_nGLwBVND43BxPGrKzp7",
+    read_timeout=timeout,
+    port=26950,
+    user="avnadmin",
+    write_timeout=timeout,
     )
+  
+
     cursor = connection.cursor()
 
     try:
@@ -86,6 +98,7 @@ def create_database_and_tables():
         # Create keys table
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS qr_keys (
+                id INT AUTO_INCREMENT PRIMARY KEY,
                 qr_code_id INT,
                 qr_code_url VARCHAR(255),
                 `key` VARCHAR(255) UNIQUE,

@@ -1,14 +1,25 @@
 import mysql.connector
+import pymysql
 
 # Function to delete the database
 def delete_database():
     try:
         # Connect to MySQL server
-        connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="mrk*14143"
+    
+        timeout = 10
+        connection = pymysql.connect(
+        charset="utf8mb4",
+        connect_timeout=timeout,
+        cursorclass=pymysql.cursors.DictCursor,
+        db="defaultdb",
+        host="mysql-3fe1618-ravi.a.aivencloud.com",
+        password="AVNS_nGLwBVND43BxPGrKzp7",
+        read_timeout=timeout,
+        port=26950,
+        user="avnadmin",
+        write_timeout=timeout,
         )
+    
         cursor = connection.cursor()
 
         # Drop the database
