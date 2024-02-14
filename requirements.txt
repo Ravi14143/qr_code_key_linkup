@@ -1,5 +1,5 @@
 streamlit
-open-python
+opencv-python
 pillow
 pyzbar
 pymysql
