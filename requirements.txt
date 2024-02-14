@@ -1,9 +1,6 @@
-mysql
 streamlit
 open-python
 pillow
 pyzbar
 pymysql
-os
-mysql-connector-python
 pandas
