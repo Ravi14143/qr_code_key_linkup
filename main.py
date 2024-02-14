@@ -1,6 +1,6 @@
 import streamlit as st
 import hashlib
-#import cv2
+import cv2
 from pyzbar.pyzbar import decode
 from PIL import Image
 import pandas as pd
