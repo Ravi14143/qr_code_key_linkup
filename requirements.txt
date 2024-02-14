@@ -1,4 +1,4 @@
-opencv_python_headless==4.5
+opencv_python_headless==4.5.1.48
 pandas==2.0.3
 Pillow==10.2.0
 PyMySQL==1.1.0
