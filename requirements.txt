@@ -3,7 +3,6 @@ streamlit
 open-python
 pillow
 pyzbar
-hashlib
 os
 mysql-connector-python
 pandas
