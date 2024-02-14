@@ -1,6 +1,5 @@
 import streamlit as st
 import hashlib
-import os
 import cv2
 from pyzbar.pyzbar import decode
 from PIL import Image
