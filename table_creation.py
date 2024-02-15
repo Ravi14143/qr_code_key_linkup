@@ -9,7 +9,7 @@ def create_database_and_tables():
     charset="utf8mb4",
     connect_timeout=timeout,
     cursorclass=pymysql.cursors.DictCursor,
-    db="defaultdb",
+   # db="qr_code_db",
     host="mysql-3fe1618-ravi.a.aivencloud.com",
     password="AVNS_nGLwBVND43BxPGrKzp7",
     read_timeout=timeout,

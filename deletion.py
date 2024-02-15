@@ -11,7 +11,7 @@ def delete_database():
         charset="utf8mb4",
         connect_timeout=timeout,
         cursorclass=pymysql.cursors.DictCursor,
-        db="defaultdb",
+       # db="defaultdb",
         host="mysql-3fe1618-ravi.a.aivencloud.com",
         password="AVNS_nGLwBVND43BxPGrKzp7",
         read_timeout=timeout,

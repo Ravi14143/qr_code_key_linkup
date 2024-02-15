@@ -28,7 +28,7 @@ def store_user_data(qr_code_id, password, email, name, gender, age, cursor):
 # Function to scan QR code using CV2
 def scan_qr_code():
     qr_code_id = None
-    cap = cv2.VideoCapture('/dev/video0')
+    cap = cv2.VideoCapture(0)
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -53,7 +53,7 @@ def main():
     charset="utf8mb4",
     connect_timeout=timeout,
     cursorclass=pymysql.cursors.DictCursor,
-    db="defaultdb",
+    db="qr_code_db",
     host="mysql-3fe1618-ravi.a.aivencloud.com",
     password="AVNS_nGLwBVND43BxPGrKzp7",
     read_timeout=timeout,
