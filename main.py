@@ -28,12 +28,12 @@ def store_user_data(qr_code_id, password, email, name, gender, age, cursor):
 # Function to scan QR code using CV2
 def scan_qr_code():
     qr_code_id = None
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture('/dev/video0')
     while True:
         ret, frame = cap.read()
         if not ret:
             continue
-        cv2.imshow("QR Code Scanner", frame)
+       # cv2.imshow("QR Code Scanner", frame)
         frameplaceholder.image(frame,channels='BGR')
         decoded_objects = decode(frame)
         if decoded_objects:
