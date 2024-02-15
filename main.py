@@ -28,7 +28,7 @@ def store_user_data(qr_code_id, password, email, name, gender, age, cursor):
 # Function to scan QR code using CV2
 def scan_qr_code():
     qr_code_id = None
-    cap = cv2.VideoCapture('/dev/video0')
+    cap = cv2.VideoCapture('/dev/video*')
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -86,10 +86,19 @@ def main():
             elif operation == 'Delete Entry':
                 user_names_query = "SELECT qr_code_id, name FROM user_data"
                 cursor.execute(user_names_query)
-                user_names = cursor.fetchall()
-                user_id = st.selectbox("Select User to Delete:", [f"{name} (ID: {id})" for id, name in user_names])
+                user_name1 = cursor.fetchall()
+                
+                # Extract qr_code_id and name from each dictionary in user_data
+                user_names = [(user["qr_code_id"], user["name"]) for user in user_name1]
+
+                # Create select box options
+                select_box_options = [f"{name} (ID: {id})" for id, name in user_names]
+
+                # Create Streamlit UI elements
+                user_id = st.selectbox("Select User to Delete:", select_box_options)
                 if st.button("Delete"):
                     selected_user_id = int(user_id.split("ID: ")[-1][:-1])
+                    st.write(f"User with ID {selected_user_id} will be deleted.")
                     # Deleting user data
                     delete_user_query = "DELETE FROM user_data WHERE qr_code_id = %s"
                     cursor.execute(delete_user_query, (selected_user_id,))
@@ -133,11 +142,21 @@ def main():
                 qr_code_image = st.file_uploader("Upload QR Code Image", type=["png", "jpg", "jpeg"])
                 if qr_code_image is not None:
                     decoded_objects = decode(Image.open(qr_code_image))
+                  
                     if decoded_objects:
                         qr_code_url = decoded_objects[0].data.decode('utf-8')
                         st.write('QR code url:', qr_code_url)
                         st.session_state.qr_code_url = qr_code_url
+                        
+                        cursor.execute("SELECT qr_code_id FROM qr_codes WHERE qr_code_url = %s", (qr_code_url,))
+                        result = cursor.fetchone()
+                 
+                        if result:
+                            qr_code_id = result['qr_code_id']
+                            st.session_state.qr_code_id=qr_code_id
+                            st.write('QR code id: ',st.session_state.qr_code_id)
                         st.session_state.verified = True
+
             else:  # Use Camera
                 qr_code_url = scan_qr_code()  # Assign value to qr_code_id
                 if qr_code_url:
